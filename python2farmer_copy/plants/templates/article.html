@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+h1
+{
+display:block;
+text-align: center ;
+height:70
+}
+body
+{
+  background: -webkit-linear-gradient(left, #bdb76b, #eee8aa,#bdb76b); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #bdb76b, #eee8aa,#bdb76b); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #bdb76b, #eee8aa,#bdb76b); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #bdb76b, #eee8aa,#bdb76b); /* 标准的语法 */
+}
+a:link {text-decoration:none;}    /* unvisited link */
+.left_catalog
+{
+position:fixed;
+left:50;
+top:100;
+width:150; 
+}
+</style>
+</head>
+<body>
+	<h1></h1>
+	{% block content %}	
+	<div  id="left" style="float:left ;  width:20%; height:100%;">
+		<ul class ="left_catalog">
+			<a href="/"><h3>---农夫---</h3></a>
+				{% for articles in allarticle %}
+			<li>
+				<a href="{{ articles.get_absolute_url }}">{{articles.title }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>	
+	<div	id="right" style="float:right ;  width:80%;  height:100%">
+		<div style=" background-color:#ffffff; border:2px solid #000000;outline-style:solid;outline-color:#bdb76b;margin-right:50px;"  >
+			<div style="margin-right:20px;margin-left:20px;margin-bottom:20px">
+				<h3 style="text-align:center"> {{article.title}}</h3>
+				<p style="line-height:150%">
+					<script type="text/javascript">
+					var str="{{article.content}}"
+						str=str.replace(/&lt;/g,"<")
+						str=str.replace(/&gt;/g,">")
+						str=str.replace(/nbsp;/g,"&nbsp")
+						str=str.replace(/&quot;/g,"\"")
+						str=str.replace(/&amp;/g,"")
+						
+						document.write(str)
+					</script>
+				</p>
+			</br>
+			</div>
+		</div>	
+		
+	</div>
+	{% endblock content %}	
+</body>
+</html>	
